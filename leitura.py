@@ -27,7 +27,7 @@ def ler_arquivo_gramatica(nome_arquivo):
 
                 # Tratar o epsilon como cadeia vazia
                 if parte_direita == 'epsilon':
-                    parte_direita = ' '
+                    parte_direita = ''
                 
                 # Adicionar a produção
                 if parte_esquerda in gramatica['producoes']:
