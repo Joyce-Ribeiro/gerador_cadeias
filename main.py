@@ -1,5 +1,6 @@
 from leitura import ler_arquivo_gramatica
 from rapido import forma_cadeias
+from detalhado import forma_cadeias_detalhado
 
 print('Bem-vindo ao Gerador de Cadeias para Gramáticas Livres de Contexto')
 
@@ -10,29 +11,35 @@ res = []
 
 # Exibir a gramática lida
 if gramatica:
-    print("Gramática lida:")
+    print("\n\nGramática lida:")
     for chave, valor in gramatica.items():
         print(f"{chave}: {valor}")
 
-    while True:
-        # Solicitar ao usuário o número máximo de bits
-        tamanho = int(input("Digite o número máximo de bits para as cadeias: "))
-        cadeias_formadas = []  # Cadeias formadas finais
+    # Perguntar ao usuário se deseja gerar cadeias de forma detalhada
+    if input("Deseja gerar cadeias de forma detalhada? (s/n): ").strip().lower() == 's':
+        forma_cadeias_detalhado(gramatica)
 
-        # Gerar cadeias com o tamanho especificado
-        resultado, producoes = forma_cadeias(gramatica, tamanho=tamanho, cadeias_formadas=cadeias_formadas)
+    else:  
+        while True:
+            # Solicitar ao usuário o número máximo de bits
+            tamanho = int(input("Digite o número máximo de bits para as cadeias: "))
+            cadeias_formadas = []  # Cadeias formadas finais
 
-        # Exibir as cadeias formadas com suas produções
-        print("Cadeias formadas com suas produções:")
-        for cadeia, p in zip(resultado, producoes):
-            # Verificar se a cadeia e produção já foram registradas
-            if [cadeia, p] not in res:
-                print(cadeia, "->", p)
-                res.append([cadeia, p])
+            # Gerar cadeias com o tamanho especificado
+            resultado, producoes = forma_cadeias(gramatica, tamanho=tamanho, cadeias_formadas=cadeias_formadas)
 
-        # Perguntar ao usuário se deseja gerar uma nova cadeia
-        continuar = input("Deseja gerar uma nova cadeia? (s/n): ").strip().lower()
-        if continuar != 's':
-            break
+            # Exibir as cadeias formadas com suas produções
+            print("Cadeias formadas com suas produções:")
+            for cadeia, p in zip(resultado, producoes):
+                # Verificar se a cadeia e produção já foram registradas
+                if [cadeia, p] not in res:
+                    print(cadeia, "->", p)
+                    res.append([cadeia, p])
 
-    print("Obrigado por usar o Gerador de Cadeias!")
+            # Perguntar ao usuário se deseja gerar uma nova cadeia
+            continuar = input("Deseja gerar uma nova cadeia? (s/n): ").strip().lower()
+            if continuar != 's':
+                break
+
+    print("\n\nObrigado por usar o Gerador de Cadeias!")
+
