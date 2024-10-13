@@ -6,14 +6,13 @@ def nao_contem_variavel(cadeia, variaveis):
     # Verifica se a cadeia contém alguma variável
     return all(char not in variaveis for char in cadeia)
 
-def forma_cadeias(glc, tamanho):
+def forma_cadeias(glc, tamanho, cadeias_formadas):
     variaveis = glc['variaveis']
     simbolos = glc['terminais']
     variavel_de_partida = glc['inicial']
     producoes = glc['producoes']
 
     fila_producoes = [] # Producoes que faltam
-    cadeias_formadas = [] # Cadeias_formadas finais formadas
     cadeias_formadas_totais = []# Todas as cadeias_formadas geradas ate o momento (com ou sem simbolos)
 
     # Adiciona as producoes que partem da variável de partida
@@ -40,4 +39,4 @@ def forma_cadeias(glc, tamanho):
                     if conta_simbolos(cadeia, simbolos) > tamanho: # Se a quantidade de simbolos passar do tamanho estabelecido (não for possivel criar uma cadeia minima)
                         print("Quantidade de símbolos maior que o tamanho:", conta_simbolos(cadeia, simbolos))
 
-    return cadeias_formadas
+    return cadeias_formadas, cadeias_formadas_totais
