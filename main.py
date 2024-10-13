@@ -12,16 +12,21 @@ print("Gramática lida:")
 for chave, valor in gramatica.items():
     print(f"{chave}: {valor}")
 
-# Solicitar ao usuário o número máximo de bits
-tamanho = int(input("Digite o número máximo de bits para as cadeias: "))
+while True:
+    # Solicitar ao usuário o número máximo de bits
+    tamanho = int(input("Digite o número de bits para a cadeias: "))
+    cadeias_formadas = [] # Cadeias_formadas finais formadas
+    # Gerar cadeias com o tamanho especificado
+    resultado, producoes = forma_cadeias(gramatica, tamanho=tamanho, cadeias_formadas= cadeias_formadas)
 
-# Gerar cadeias com o tamanho especificado
-resultado = forma_cadeias(gramatica, tamanho=tamanho)
+    # Exibir as cadeias formadas com suas produções
+    print("Cadeias formadas com suas produções:")
+    for cadeia, p in zip(resultado, producoes):
+        print(cadeia, "->", p)
 
-# Remover espaços das cadeias geradas
-resultado = [item.replace(' ', '') for item in resultado]
+    # Perguntar ao usuário se deseja gerar uma nova cadeia
+    continuar = input("Deseja gerar uma nova cadeia? (s/n): ").strip().lower()
+    if continuar != 's':
+        break
 
-# Exibir as cadeias formadas, cada uma em uma nova linha
-print("Cadeias formadas:")
-for cadeia in resultado:
-    print(cadeia)
+print("Obrigado por usar o Gerador de Cadeias!")
