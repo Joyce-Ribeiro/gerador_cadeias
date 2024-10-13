@@ -32,7 +32,7 @@ def forma_cadeias(glc, tamanho, cadeias_formadas):
                     if nao_contem_variavel(cadeia, variaveis) and cadeia not in cadeias_formadas: # Se não existe mais variaveis na cadeia
                         cadeias_formadas.append(cadeia)
 
-                    elif cadeia not in cadeias_formadas_totais:  # Se a cadeia nunca foi adicionada na lista e contém variável
+                    elif cadeia not in cadeias_formadas_totais and cadeia not in cadeias_formadas:  # Se a cadeia nunca foi adicionada na lista e contém variável
                         fila_producoes.append(cadeia) 
                         cadeias_formadas_totais.append(cadeia)
 
