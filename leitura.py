@@ -22,7 +22,7 @@ def ler_arquivo_gramatica(nome_arquivo):
             # Se estiver na seção de produções
             if producoes_comecaram:
                 if ':' in linha:
-                    parte_esquerda, parte_direita = linha.split(':')
+                    parte_esquerda, parte_direita = linha.split(':', 1)  # separa apenas na primeira ocorrência de ':'
                     parte_esquerda = parte_esquerda.strip()
                     parte_direita = parte_direita.strip()
 
@@ -46,7 +46,7 @@ def ler_arquivo_gramatica(nome_arquivo):
             elif linha.startswith('terminais:'):
                 gramatica['terminais'] = [t.strip() for t in linha.split(':')[1].split(',')]
 
-            elif linha.startswith('producoes:'):
+            elif linha.startswith('producoes'):
                 producoes_comecaram = True  # Identificar que a seção de produções começou
 
         # Verifica se todas as seções têm pelo menos um valor
